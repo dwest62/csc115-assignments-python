@@ -9,7 +9,7 @@ class Dice():
         
     # Visually mimics dice rolling
     def roll(self):
-        for i in range(randint(7-13)):
+        for i in range(randint(7,13)):
             self.curr_vals = randint(1,6), randint(1,6)
             self.show()
             sleep((15 + (i)**1.75)/randint(80, 100))
