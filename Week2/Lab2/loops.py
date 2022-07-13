@@ -22,7 +22,6 @@ def p2():
     print(avg)
 
 gip = lambda: input("say something: ")
-
 def p3():
     ip = gip()
     while True:
@@ -41,4 +40,3 @@ def p4():
 
 if __name__ == "__main__":
     main()
-    

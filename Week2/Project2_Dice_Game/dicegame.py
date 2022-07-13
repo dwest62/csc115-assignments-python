@@ -10,14 +10,16 @@ class DiceGame:
         self.dealer.welcome()
     
     def play(self):
-        self.play_round()
-        response = self.dealer.check_if_player_cont()
-        while response in ("Y, y"):
+        while True:
             self.play_round()
+            response = self.dealer.check_if_player_cont()
+            if response not in ("Y", "y"):
+                break
             if self.funds.curr_money == 0:
                 print("Sorry, you are out of money.")
-                exit("See you later!")
-        exit(f"Your final score is $ {self.funds.curr_money:,.2f}")
+                break
+        print("See you later!")
+        print(f"Your final score is $ {self.funds.curr_money:,.2f}")
 
     def play_round(self):
         bet = self.dealer.get_player_bet()
