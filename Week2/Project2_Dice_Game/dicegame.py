@@ -12,11 +12,11 @@ class DiceGame:
     def play(self):
         while True:
             self.play_round()
-            response = self.dealer.check_if_player_cont()
-            if response not in ("Y", "y"):
-                break
             if self.funds.curr_money == 0:
                 print("Sorry, you are out of money.")
+                break
+            response = self.dealer.check_if_player_cont()
+            if response not in ("Y", "y"):
                 break
         print("See you later!")
         print(f"Your final score is $ {self.funds.curr_money:,.2f}")
