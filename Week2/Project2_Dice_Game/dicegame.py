@@ -40,3 +40,4 @@ class DiceGame:
             self.funds.sub(bet)
         print(f"You {wl} $ {bet:,.2f}.")
         print(f"Your current balance is $ {self.funds.curr_money:,.2f}.")
+        
