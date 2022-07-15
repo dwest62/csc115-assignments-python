@@ -1,6 +1,8 @@
 from random import randint
 from time import sleep
-from .dice_art import dice_parts as art
+from dice.dice_art import dice_parts as art
+import os
+os.system("")
 
 class Dice():
     def __init__(self, d1 = 1, d2 = 3):
