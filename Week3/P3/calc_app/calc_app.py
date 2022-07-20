@@ -5,10 +5,13 @@ from mat.cal_funcs import CalcFuncs
 class CalcApp(CalcFuncs):
     def __init__(self) -> None:
         super().__init__()
+        self.welcome()
     
     def run_app(self):
         user_input = input()
-        if user_input == "quit": return
+        if user_input == "quit":
+            self.print_exit()
+            return
         try:
             print(self.new_calculation(user_input))
         except:
@@ -33,5 +36,16 @@ class CalcApp(CalcFuncs):
     
     def parse_f(self) -> FunctionType:
         key = self.user_input.split(" ")[0]
-        f = self.calc_func_map.get(key)
+        f = self.func_map.get(key)
+        self.func_map[key].count += 1
         return f
+    
+    def print_exit(self):
+        print("Function usage count:")
+        for key, val in self.func_map.items():
+            print(f"  {key} function : {val.count}")
+        print("")
+    
+    @staticmethod
+    def welcome():
+        print("Welcome to iCalculator")

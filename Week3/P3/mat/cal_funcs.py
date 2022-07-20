@@ -1,9 +1,10 @@
 class CalcFuncs:
-    calc_func_map = {}
+    func_map = {}
 
     def __init__(self) -> None:
         for f in (self.add, self.sub, self.mul, self.div, self.abs):
-            self.calc_func_map[f.__name__] = f
+            self.func_map[f.__name__] = f
+            self.func_map[f.__name__].count = 0
             
     @staticmethod
     def add(*floats) -> float:
@@ -11,12 +12,14 @@ class CalcFuncs:
         for n in floats:
             total += n
         return total
+
     @staticmethod
     def sub(minuend: float, *subtrahends: float) -> float:
         difference = minuend
         for subtrahend in subtrahends:
             difference -= subtrahend
         return difference   
+        
     @staticmethod
     def mul(*floats: float) -> float:
         product = floats[0]
