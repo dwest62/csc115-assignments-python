@@ -1,44 +1,17 @@
 import random
 
-def display_banner():
-    print("""
- __                               _      _            _ 
-/ _\  ___  _ __  __ _  _ __ ___  | |__  | |  ___   __| |
-\ \  / __|| '__|/ _` || '_ ` _ \ | '_ \ | | / _ \ / _` |
-_\ \| (__ | |  | (_| || | | | | || |_) || ||  __/| (_| |
-\__/ \___||_|   \__,_||_| |_| |_||_.__/ |_| \___| \__,_|
-                                                        
-""")
-
-def load_words(filename):
-    #load file containing scrambled word and answer.
-    #scrambled word and answer are separated by :
-
-    scrambled_list = []
-    answer_list = []
-    with open(filename, 'r') as f:
-        for line in f:
-            (s,a) = line.strip().split(":")
-            scrambled_list+=[s]
-            answer_list+=[a]
-    return (scrambled_list, answer_list)
-            
-            
 def main():
-    
-    display_banner()
-
-    
-    (scrambled_list, answer_list) = load_words('Lab4\CSC 115 Lab 4_Words.txt')
-    
     #--------------------------
     # Randomly pick a scrambled word from the list.
     # Asks the user to guess it.
     # Ask again if the guess is wrong.  Repeat until the guess is right.
     # If guess is right, ask if user wants another game.
     #--------------------------
+    display_banner()
+    (scrambled_list, answer_list) = load_words('Week4\Lab4\CSC 115 Lab 4_Words.txt')
     app = ScrambledApp(scrambled_list, answer_list)
     app.run()
+
 
 class ScrambledApp:
     def __init__(self, scrambled_list: list, answer_list: list) -> None:
@@ -82,7 +55,7 @@ class ScrambledApp:
     def _prompt_continue(self, prompt) -> bool:
         maybe_continue = input(prompt)
         while maybe_continue not in ["Y", "y", "N", "n"]:
-            print(f"Invalid input, enter y or n. You entered {maybe_continue}.")
+            print(f"Invalid input {maybe_continue}, enter Y or N.")
             maybe_continue = input(prompt)
         return maybe_continue in ["Y", "y"]
     
@@ -96,6 +69,30 @@ class ScrambledApp:
         
     def give_hint(self):
         print(f"Hint #{self.guesses}: {self.answer[:self.guesses]}")
+
+def display_banner():
+    print("""
+ __                               _      _            _ 
+/ _\  ___  _ __  __ _  _ __ ___  | |__  | |  ___   __| |
+\ \  / __|| '__|/ _` || '_ ` _ \ | '_ \ | | / _ \ / _` |
+_\ \| (__ | |  | (_| || | | | | || |_) || ||  __/| (_| |
+\__/ \___||_|   \__,_||_| |_| |_||_.__/ |_| \___| \__,_|
+                                                        
+""")
+
+def load_words(filename):
+    #load file containing scrambled word and answer.
+    #scrambled word and answer are separated by :
+
+    scrambled_list = []
+    answer_list = []
+    with open(filename, 'r') as f:
+        for line in f:
+            (s,a) = line.strip().split(":")
+            scrambled_list+=[s]
+            answer_list+=[a]
+    return (scrambled_list, answer_list) 
+
 
 if __name__ == "__main__":
     main()
